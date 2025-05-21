@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barbearia - Agendamento Online</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <h1>Barbearia</h1>
+            </div>
+            <nav>
+                <ul id="menu">
+                    <li><a href="#" class="nav-link" data-page="home">Home</a></li>
+                    <li><a href="#" class="nav-link" data-page="servicos">Serviços</a></li>
+                    <li><a href="#" class="nav-link" data-page="agendamento">Agendar</a></li>
+                    <li><a href="#" class="nav-link" data-page="avaliacoes">Avaliações</a></li>
+                    <li><a href="#" class="nav-link" data-page="perfil" id="perfil-link">Perfil</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <button id="login-btn" class="btn">Login</button>
+                <button id="register-btn" class="btn">Cadastrar</button>
+                <button id="logout-btn" class="btn hidden">Sair</button>
+            </div>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </header>
+
+        <main id="content">
+            <!-- Conteúdo dinâmico será carregado aqui -->
+            <div id="home-page" class="page active">
+                <section class="hero">
+                    <div class="hero-content">
+                        <h2>Estilo e Precisão</h2>
+                        <p>Agende seu horário e experimente o melhor serviço de barbearia da cidade</p>
+                        <button id="agendar-btn" class="btn btn-primary">Agendar Agora</button>
+                    </div>
+                </section>
+
+                <section class="features">
+                    <div class="feature">
+                        <i class="fas fa-cut"></i>
+                        <h3>Cortes Modernos</h3>
+                        <p>Profissionais especializados em todos os estilos de corte</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-clock"></i>
+                        <h3>Horários Flexíveis</h3>
+                        <p>Agende o horário que melhor se adapta à sua rotina</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-image"></i>
+                        <h3>Referências Visuais</h3>
+                        <p>Envie imagens de referência para o corte desejado</p>
+                    </div>
+                </section>
+
+                <section class="about">
+                    <h2>Sobre Nós</h2>
+                    <p>Nossa barbearia oferece serviços de alta qualidade com profissionais experientes. Focamos em proporcionar uma experiência única, com ambiente agradável e atendimento personalizado.</p>
+                    <p>Venha conhecer e transformar seu visual com a gente!</p>
+                </section>
+            </div>
+
+            <div id="servicos-page" class="page">
+                <h2>Nossos Serviços</h2>
+                <div class="servicos-container" id="servicos-lista">
+                    <!-- Serviços serão carregados dinamicamente -->
+                    <div class="servico-card skeleton"></div>
+                    <div class="servico-card skeleton"></div>
+                    <div class="servico-card skeleton"></div>
+                </div>
+            </div>
+
+            <div id="agendamento-page" class="page">
+                <h2>Agendar Serviço</h2>
+                <div class="agendamento-container">
+                    <div class="agendamento-form">
+                        <div class="form-group">
+                            <label for="servico-select">Escolha o Serviço:</label>
+                            <select id="servico-select" required>
+                                <option value="">Selecione um serviço</option>
+                                <!-- Opções serão carregadas dinamicamente -->
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="data-agendamento">Data:</label>
+                            <input type="date" id="data-agendamento" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="horario-select">Horário:</label>
+                            <select id="horario-select" required>
+                                <option value="">Selecione um horário</option>
+                                <!-- Horários serão carregados dinamicamente -->
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="observacoes">Observações:</label>
+                            <textarea id="observacoes" rows="3" placeholder="Alguma observação especial?"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="imagem-referencia">Imagem de Referência:</label>
+                            <input type="file" id="imagem-referencia" accept="image/*">
+                            <div id="preview-container" class="hidden">
+                                <img id="imagem-preview" src="#" alt="Preview">
+                                <button id="remover-imagem" class="btn btn-small">Remover</button>
+                            </div>
+                        </div>
+                        <button id="confirmar-agendamento" class="btn btn-primary">Confirmar Agendamento</button>
+                    </div>
+                    <div class="agendamento-info">
+                        <h3>Informações Importantes</h3>
+                        <ul>
+                            <li>Chegue com 10 minutos de antecedência</li>
+                            <li>Cancelamentos devem ser feitos com 2 horas de antecedência</li>
+                            <li>Você receberá um e-mail de confirmação após o agendamento</li>
+                            <li>Envie uma imagem de referência para resultados mais precisos</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="avaliacoes-page" class="page">
+                <h2>Avaliações dos Clientes</h2>
+                <div class="avaliacoes-container" id="avaliacoes-lista">
+                    <!-- Avaliações serão carregadas dinamicamente -->
+                    <div class="avaliacao-card skeleton"></div>
+                    <div class="avaliacao-card skeleton"></div>
+                    <div class="avaliacao-card skeleton"></div>
+                </div>
+                <div id="avaliacao-form-container" class="hidden">
+                    <h3>Deixe sua Avaliação</h3>
+                    <div class="avaliacao-form">
+                        <div class="form-group">
+                            <label for="agendamento-select">Selecione o Agendamento:</label>
+                            <select id="agendamento-select" required>
+                                <option value="">Selecione um agendamento concluído</option>
+                                <!-- Agendamentos serão carregados dinamicamente -->
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Nota:</label>
+                            <div class="rating">
+                                <i class="far fa-star" data-rating="1"></i>
+                                <i class="far fa-star" data-rating="2"></i>
+                                <i class="far fa-star" data-rating="3"></i>
+                                <i class="far fa-star" data-rating="4"></i>
+                                <i class="far fa-star" data-rating="5"></i>
+                            </div>
+                            <input type="hidden" id="nota-avaliacao" value="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="comentario">Comentário:</label>
+                            <textarea id="comentario" rows="3" placeholder="Conte sua experiência"></textarea>
+                        </div>
+                        <button id="enviar-avaliacao" class="btn btn-primary">Enviar Avaliação</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="perfil-page" class="page">
+                <h2>Meu Perfil</h2>
+                <div class="perfil-container">
+                    <div class="perfil-info">
+                        <h3>Informações Pessoais</h3>
+                        <div id="perfil-dados">
+                            <!-- Dados do perfil serão carregados dinamicamente -->
+                            <div class="skeleton-text"></div>
+                            <div class="skeleton-text"></div>
+                            <div class="skeleton-text"></div>
+                        </div>
+                    </div>
+                    <div class="perfil-agendamentos">
+                        <h3>Meus Agendamentos</h3>
+                        <div id="meus-agendamentos">
+                            <!-- Agendamentos serão carregados dinamicamente -->
+                            <div class="agendamento-item skeleton"></div>
+                            <div class="agendamento-item skeleton"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Modal de Login -->
+        <div id="login-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Login</h2>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="login-email">Email:</label>
+                        <input type="email" id="login-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-senha">Senha:</label>
+                        <input type="password" id="login-senha" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Entrar</button>
+                </form>
+                <p class="form-switch">Não tem uma conta? <a href="#" id="switch-to-register">Cadastre-se</a></p>
+            </div>
+        </div>
+
+        <!-- Modal de Cadastro -->
+        <div id="register-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Cadastro</h2>
+                <form id="register-form">
+                    <div class="form-group">
+                        <label for="register-nome">Nome:</label>
+                        <input type="text" id="register-nome" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-email">Email:</label>
+                        <input type="email" id="register-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-telefone">Telefone:</label>
+                        <input type="tel" id="register-telefone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-senha">Senha:</label>
+                        <input type="password" id="register-senha" required minlength="6">
+                    </div>
+                    <div class="form-group">
+                        <label for="register-confirmar-senha">Confirmar Senha:</label>
+                        <input type="password" id="register-confirmar-senha" required minlength="6">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+                </form>
+                <p class="form-switch">Já tem uma conta? <a href="#" id="switch-to-login">Faça login</a></p>
+            </div>
+        </div>
+
+        <!-- Modal de Confirmação -->
+        <div id="confirmation-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Confirmação de Agendamento</h2>
+                <div id="confirmation-details">
+                    <!-- Detalhes do agendamento serão carregados dinamicamente -->
+                </div>
+                <div class="modal-buttons">
+                    <button id="confirmar-final" class="btn btn-primary">Confirmar</button>
+                    <button id="cancelar-agendamento" class="btn">Cancelar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de Alerta -->
+        <div id="alert-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2 id="alert-title">Alerta</h2>
+                <p id="alert-message"></p>
+                <button id="alert-ok" class="btn btn-primary">OK</button>
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>Barbearia</h2>
+                    <p>Estilo e precisão em cada corte</p>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contato</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Rua Exemplo, 123 - Centro</p>
+                    <p><i class="fas fa-phone"></i> (11) 99999-9999</p>
+                    <p><i class="fas fa-envelope"></i> contato@barbearia.com</p>
+                </div>
+                <div class="footer-hours">
+                    <h3>Horário de Funcionamento</h3>
+                    <p>Segunda a Sexta: 9h às 19h</p>
+                    <p>Sábado: 9h às 18h</p>
+                    <p>Domingo: Fechado</p>
+                </div>
+                <div class="footer-social">
+                    <h3>Redes Sociais</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Barbearia. Todos os direitos reservados.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
