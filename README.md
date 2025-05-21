@@ -22,23 +22,7 @@ cd backend
 npm install
 ```
 
-3. Configure o MongoDB:
-
-   a. Instale o MongoDB em seu sistema:
-      - Para Windows: [Guia de instalação do MongoDB para Windows](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/)
-      - Para macOS: [Guia de instalação do MongoDB para macOS](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/)
-      - Para Linux: [Guia de instalação do MongoDB para Linux](https://docs.mongodb.com/manual/administration/install-on-linux/)
-
-   b. Inicie o serviço do MongoDB:
-      - Windows: O serviço deve iniciar automaticamente após a instalação
-      - macOS: Execute `brew services start mongodb-community`
-      - Linux: Execute `sudo systemctl start mongod`
-
-   c. Verifique se o MongoDB está rodando:
-      - Execute `mongo` no terminal para abrir o shell do MongoDB
-      - Se conectar com sucesso, o MongoDB está funcionando corretamente
-
-   d. Configure as variáveis de ambiente no arquivo `.env`:
+3. Configure as variáveis de ambiente no arquivo `.env`:
 
 ```
 PORT=5000
@@ -47,16 +31,6 @@ JWT_SECRET=barbeariaSecretKey2025
 JWT_EXPIRE=30d
 EMAIL_SERVICE=console
 ```
-
-   e. Você pode modificar a string de conexão `MONGO_URI` se:
-      - Estiver usando um serviço MongoDB em nuvem como MongoDB Atlas
-      - Tiver configurado usuário e senha para o MongoDB local
-      - Estiver usando uma porta diferente da padrão (27017)
-
-   Exemplo com MongoDB Atlas:
-   ```
-   MONGO_URI=mongodb+srv://usuario:senha@cluster0.mongodb.net/barbearia?retryWrites=true&w=majority
-   ```
 
 4. Inicie o servidor:
 

@@ -38,13 +38,10 @@ exports.protect = asyncHandler(async (req, res, next) => {
 
 // Verificar se o e-mail foi confirmado
 exports.emailConfirmado = asyncHandler(async (req, res, next) => {
-  if (!req.user.emailConfirmado) {
-    return next(
-      new ErrorResponse('Por favor, confirme seu e-mail para acessar esta rota', 403)
-    );
-  }
+  // Bypass da verificação de e-mail
   next();
 });
+
 
 // Conceder acesso a funções específicas
 exports.authorize = (...roles) => {
