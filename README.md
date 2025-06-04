@@ -22,7 +22,23 @@ cd backend
 npm install
 ```
 
-3. Configure as variáveis de ambiente no arquivo `.env`:
+3. Configure o MongoDB:
+
+   a. Instale o MongoDB em seu sistema:
+      - Para Windows: [Guia de instalação do MongoDB para Windows](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/)
+      - Para macOS: [Guia de instalação do MongoDB para macOS](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/)
+      - Para Linux: [Guia de instalação do MongoDB para Linux](https://docs.mongodb.com/manual/administration/install-on-linux/)
+
+   b. Inicie o serviço do MongoDB:
+      - Windows: O serviço deve iniciar automaticamente após a instalação
+      - macOS: Execute `brew services start mongodb-community`
+      - Linux: Execute `sudo systemctl start mongod`
+
+   c. Verifique se o MongoDB está rodando:
+      - Execute `mongo` no terminal para abrir o shell do MongoDB
+      - Se conectar com sucesso, o MongoDB está funcionando corretamente
+
+   d. Configure as variáveis de ambiente no arquivo `.env`:
 
 ```
 PORT=5000
@@ -31,6 +47,16 @@ JWT_SECRET=barbeariaSecretKey2025
 JWT_EXPIRE=30d
 EMAIL_SERVICE=console
 ```
+
+   e. Você pode modificar a string de conexão `MONGO_URI` se:
+      - Estiver usando um serviço MongoDB em nuvem como MongoDB Atlas
+      - Tiver configurado usuário e senha para o MongoDB local
+      - Estiver usando uma porta diferente da padrão (27017)
+
+   Exemplo com MongoDB Atlas:
+   ```
+   MONGO_URI=mongodb+srv://usuario:senha@cluster0.mongodb.net/barbearia?retryWrites=true&w=majority
+   ```
 
 4. Inicie o servidor:
 
@@ -430,3 +456,29 @@ As imagens de referência são armazenadas localmente na pasta `uploads/referenc
 - Os horários disponíveis são fixos para simplificar a implementação.
 - O envio de e-mails é simulado no console.
 - As imagens são armazenadas localmente.
+
+
+## Painel Administrativo (Gerenciamento de Serviços)
+
+O sistema agora inclui um painel administrativo acessível diretamente pelo site, permitindo que usuários com a permissão de "admin" gerenciem os serviços oferecidos pela barbearia (adicionar, editar, visualizar e excluir).
+
+### Como Designar um Usuário como Admin
+
+Por padrão, todos os usuários são criados com a role "user". Para dar permissão de administrador a um usuário:
+
+1.  Conecte-se ao seu banco de dados MongoDB (usando MongoDB Compass ou o shell `mongo`).
+2.  Navegue até o banco `barbearia` e a coleção `users`.
+3.  Encontre o documento do usuário que você deseja tornar administrador.
+4.  Edite o documento e altere o valor do campo `role` de `"user"` para `"admin"`.
+5.  Salve a alteração.
+
+### Acessando e Usando o Painel Admin
+
+1.  Faça login no site com a conta do usuário que agora possui a `role` de "admin".
+2.  Após o login, um link "Painel Admin" aparecerá na barra de navegação.
+3.  Clique no link "Painel Admin".
+4.  Você verá duas seções:
+    *   **Adicionar Novo Serviço:** Um formulário para cadastrar novos serviços com nome, descrição, preço, duração, tipo e disponibilidade.
+    *   **Serviços Existentes:** Uma tabela listando todos os serviços cadastrados, com botões para "Editar" e "Excluir" cada um.
+5.  Use o formulário e os botões para gerenciar os serviços de forma autônoma.
+

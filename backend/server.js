@@ -10,19 +10,7 @@ const errorHandler = require('./middleware/error');
 dotenv.config();
 
 // Conectar ao banco de dados
-
-// async function connectDB() {
-//   try{
-//       await mongoose.connect('mongodb+srv://wallissonsccp:12Qwaszx@clusterapi.moiy7.mongodb.net/dataArcnc?retryWrites=true&w=majority&appName=ClusterAPI')
-//       console.log("Conectado ao banco de dados")
-//   }catch (error){
-//       console.log("Erro ao conectar ao banco de dados", error)
-//       process.exit(1);
-//   }
-// };
-
 connectDB();
-
 
 // Rotas
 const auth = require('./routes/auth');

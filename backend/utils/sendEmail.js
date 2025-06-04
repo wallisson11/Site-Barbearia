@@ -1,18 +1,15 @@
 const nodemailer = require('nodemailer');
 
-// Simulação de envio de e-mail (apenas para desenvolvimento)
 const sendEmail = async (options) => {
-  // Criar um transportador para simulação
+  // Criar transportador SMTP com dados do .env
   const transporter = nodemailer.createTransport({
-    host: 'smtp.example.com',
-    port: 587,
-    secure: false,
+    host: process.env.SMTP_HOST,       // Exemplo: 'smtp.gmail.com'
+    port: process.env.SMTP_PORT,       // Exemplo: 587
+    secure: process.env.SMTP_SECURE === 'true',  // true para porta 465, false para 587
     auth: {
-      user: 'noreply@barbearia.com',
-      pass: 'senha123'
+      user: process.env.SMTP_USER,     // Seu e-mail real, ex: 'seuemail@gmail.com'
+      pass: process.env.SMTP_PASS      // Senha do app ou senha da conta
     },
-    // No ambiente de desenvolvimento, não envia e-mails reais
-    // apenas registra no console
     logger: true,
     debug: true,
     tls: {
@@ -20,16 +17,16 @@ const sendEmail = async (options) => {
     }
   });
 
-  // Configurar opções de e-mail
+  // Configurar opções do e-mail
   const message = {
-    from: '"Barbearia App" <noreply@barbearia.com>',
-    to: options.email,
+    from: `"Barbearia App" <${process.env.SMTP_USER}>`,  // Remetente do e-mail
+    to: options.email,       // Destinatário
     subject: options.subject,
     text: options.message,
     html: options.html || options.message.replace(/\n/g, '<br>')
   };
 
-  // Em ambiente de desenvolvimento, apenas registra no console
+  // Se estiver em modo console (dev), só imprime no terminal
   if (process.env.EMAIL_SERVICE === 'console') {
     console.log('==================== SIMULAÇÃO DE E-MAIL ====================');
     console.log(`Para: ${message.to}`);
@@ -39,7 +36,7 @@ const sendEmail = async (options) => {
     return true;
   }
 
-  // Em ambiente de produção, enviaria o e-mail
+  // Em produção, envia o e-mail de verdade
   const info = await transporter.sendMail(message);
   console.log('E-mail enviado: %s', info.messageId);
   return info;

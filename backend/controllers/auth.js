@@ -20,9 +20,9 @@ exports.register = asyncHandler(async (req, res, next) => {
 
   // Enviar e-mail de confirmação
   const confirmationToken = user.getSignedJwtToken();
-  
+
   const confirmationUrl = `${req.protocol}://${req.get('host')}/confirmar-email/${confirmationToken}`;
-  
+
   const message = `Olá ${nome},\n\nBem-vindo à Barbearia! Por favor, confirme seu e-mail clicando no link abaixo:\n\n${confirmationUrl}\n\nAtenciosamente,\nEquipe Barbearia`;
 
   try {
@@ -120,17 +120,18 @@ exports.logout = asyncHandler(async (req, res, next) => {
 });
 
 // Função auxiliar para enviar token de resposta
+// Função auxiliar para enviar token de resposta
 const sendTokenResponse = (user, statusCode, res) => {
   // Criar token
   const token = user.getSignedJwtToken();
 
+  // Converter a expiração de string para número (com fallback)
+  const cookieExpireDays = parseInt(process.env.JWT_COOKIE_EXPIRE, 10) || 30;
+
   const options = {
-    expires: new Date(
-      Date.now() + parseInt(process.env.JWT_COOKIE_EXPIRE) * 24 * 60 * 60 * 1000
-    ),
+    expires: new Date(Date.now() + cookieExpireDays * 24 * 60 * 60 * 1000),
     httpOnly: true
   };
-  
 
   if (process.env.NODE_ENV === 'production') {
     options.secure = true;
