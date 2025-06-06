@@ -478,7 +478,13 @@ Por padrão, todos os usuários são criados com a role "user". Para dar permiss
 2.  Após o login, um link "Painel Admin" aparecerá na barra de navegação.
 3.  Clique no link "Painel Admin".
 4.  Você verá duas seções:
-    *   **Adicionar Novo Serviço:** Um formulário para cadastrar novos serviços com nome, descrição, preço, duração, tipo e disponibilidade.
-    *   **Serviços Existentes:** Uma tabela listando todos os serviços cadastrados, com botões para "Editar" e "Excluir" cada um.
-5.  Use o formulário e os botões para gerenciar os serviços de forma autônoma.
+    *   **Adicionar Novo Serviço:** Um formulário para cadastrar novos serviços com nome, descrição, preço, duração, tipo, **imagem** e disponibilidade.
+    *   **Serviços Existentes:** Uma tabela listando todos os serviços cadastrados, com botões para "Editar" (incluindo a opção de alterar a imagem) e "Excluir" cada um.
+5.  Use o formulário e os botões para gerenciar os serviços e suas imagens de forma autônoma.
 
+### Exibição de Imagens
+
+*   **Imagens dos Serviços:** As imagens cadastradas para cada serviço são exibidas na página pública de "Serviços". Se nenhuma imagem for enviada, uma imagem padrão (`default-servico.jpg`) será usada.
+*   **Imagens de Referência (Usuário):** As imagens enviadas pelos usuários durante o agendamento podem ser visualizadas na seção "Meu Perfil", dentro dos detalhes de cada agendamento.
+
+## Endpoints da API
